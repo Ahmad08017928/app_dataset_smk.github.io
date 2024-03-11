@@ -24,8 +24,8 @@ with st.sidebar:
 #data frame
 if option == 'Home' or option == '' :
     st.title('Kelebihan Peserta Didik SMK NEGERI 1 KRAKSAAN')
-    # url = ("https://raw.githubusercontent.com/Ahmad08017928/dataset-smkn1/main/data.csv")
-    df = pd.read_csv("dataset\data.csv")
+    url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data.csv")
+    df = pd.read_csv(url)
     #Mengisi data yang kosong dengan nilai yang sebelumnya
     df1 = df.drop(['Timestamp', '14. Orangtua saya menunjukkan bagaimana menggunakan kelebihan saya pada berbagai situasi yang berbeda.'], axis='columns')
     data = df1.copy()
@@ -137,8 +137,8 @@ elif option == 'Tes klassifikasi':
              dengan baik kelebihan-kelebihan saya, orang tua yang memahami kemampuan terbaik saya, orang tua yang memberi kesempatan untuk secara rutin melakukan hal terbaik untuk anak,
              Orangtua yang mendorong anak untuk selalu menggunakan kelebihan-kelebihanya, orang tua yang mendorong untuk melakukan hal yang anak kuasai dengan baik, Orangtua yang menyarankan agar anak memanfaatkan kelebihan-kelebihannya,
              Orangtua yang memberi banyak kesempatan untuk menggunakan kelebihan-kelebihan anak, Orangtua yang membantu anak memikirkan cara menggunakan kelebihan-kelebihannya.""")
-    # url = ("https://raw.githubusercontent.com/Ahmad08017928/dataset-smkn1/main/data.csv")
-    df = pd.read_csv("dataset\data.csv")
+    url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data.csv")
+    df = pd.read_csv(url)
     #Mengisi data yang kosong dengan nilai yang sebelumnya
     df1 = df.drop(['Timestamp', '14. Orangtua saya menunjukkan bagaimana menggunakan kelebihan saya pada berbagai situasi yang berbeda.'], axis='columns')
     data = df1.copy()
@@ -253,8 +253,8 @@ elif option == 'Tes klassifikasi':
 
 elif option == 'klassifikasi':
     st.title("menklasifikasi kemampuan anak terhadap orang tua")
-    # url = ("https://raw.githubusercontent.com/Ahmad08017928/dataset-smkn1/main/data.csv")
-    df = pd.read_csv("dataset\data.csv")
+    url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data.csv")
+    df = pd.read_csv(url)
     #Mengisi data yang kosong dengan nilai yang sebelumnya
     df1 = df.drop(['Timestamp', '14. Orangtua saya menunjukkan bagaimana menggunakan kelebihan saya pada berbagai situasi yang berbeda.'], axis='columns')
     data = df1.copy()
