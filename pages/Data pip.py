@@ -18,7 +18,8 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 option = st.sidebar.selectbox('Silahkan Pilih :', ('Home', 'Klassifikasi', 'Tes Klassifikasi'))
 
 if option == 'Home' or option == '':
-    df = pd.read_csv('dataset\data - Untitled spreadsheet - Daftar Peserta Didik.csv')
+    url = "https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data%20-%20Untitled%20spreadsheet%20-%20Daftar%20Peserta%20Didik.csv"
+    df = pd.read_csv(url)
     df_c = df.copy()
     df_c[['No', 'Nama', 'Rombel Saat Ini', 'NIPD', 'JK', 'NISN',
         'Tempat Lahir', 'Tanggal Lahir', 'NIK', 'Agama', 'Alamat', 'RT',
