@@ -136,7 +136,8 @@ elif option == 'Tes klassifikasi':
              Orangtua yang menyadari kelebihan-kelebihan anak, orang tau yang mengetahui hal-hal yang bisa anak lakukan dengan baik, orang tua yang mengetahui 
              dengan baik kelebihan-kelebihan saya, orang tua yang memahami kemampuan terbaik saya, orang tua yang memberi kesempatan untuk secara rutin melakukan hal terbaik untuk anak,
              Orangtua yang mendorong anak untuk selalu menggunakan kelebihan-kelebihanya, orang tua yang mendorong untuk melakukan hal yang anak kuasai dengan baik, Orangtua yang menyarankan agar anak memanfaatkan kelebihan-kelebihannya,
-             Orangtua yang memberi banyak kesempatan untuk menggunakan kelebihan-kelebihan anak, Orangtua yang membantu anak memikirkan cara menggunakan kelebihan-kelebihannya.""")
+             Orangtua yang memberi banyak kesempatan untuk menggunakan kelebihan-kelebihan anak, Orangtua yang membantu anak memikirkan cara menggunakan kelebihan-kelebihannya. Dengan metode yang di gunakan adalah
+             Neural Network, Support Vector Machine dan Random Forest""")
     url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data.csv")
     df = pd.read_csv(url)
     #Mengisi data yang kosong dengan nilai yang sebelumnya
@@ -222,16 +223,25 @@ elif option == 'Tes klassifikasi':
     
     # training 75 persen dan testing 25 persen
     x_train, x_test, y_train, y_test = train_test_split(x_d, y, test_size=0.25, random_state=500)
+
+    # Classification Neural Network
+    from sklearn.neural_network import MLPClassifier
+    Class_NN = MLPClassifier()
+    Class_NN.fit(x_train, y_train)
+    y_pred_NN = Class_NN.predict(x_test)
+    akurasi_NN = accuracy_score(y_test, y_pred_NN)
+    st.write(classification_report(y_test, y_pred_NN))
+    st.write('Dari pengujian menggunakan metode Neural Network mendapatkan akurasi sebesar **%d persen**'%(akurasi_NN*100))
     
-    st.header("1. K-Nearest Neighbor")
-    # Classification knn
-    classification = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
-    classification.fit(x_train, y_train)
-    y_pred_knn = classification.predict(x_test)
-    a_k = classification_report(y_test, y_pred_knn)
-    akurasi = accuracy_score(y_test, y_pred_knn)
-    st.write(a_k)
-    st.write('Dari pengujian menggunakan metode K-Nearest Neighbor mendapatkan akurasi sebesar **%d persen**'%(akurasi*100))
+    # st.header("1. K-Nearest Neighbor")
+    # # Classification knn
+    # classification = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
+    # classification.fit(x_train, y_train)
+    # y_pred_knn = classification.predict(x_test)
+    # a_k = classification_report(y_test, y_pred_knn)
+    # akurasi = accuracy_score(y_test, y_pred_knn)
+    # st.write(a_k)
+    # st.write('Dari pengujian menggunakan metode K-Nearest Neighbor mendapatkan akurasi sebesar **%d persen**'%(akurasi*100))
     
     st.header("2. Support Vector Machine")
     clf = SVC(kernel='linear')
@@ -337,10 +347,15 @@ elif option == 'klassifikasi':
     
     # training 75 persen dan testing 25 persen
     x_train, x_test, y_train, y_test = train_test_split(x_d, y_d, test_size=0.25, random_state=500)
+
+    # Classification Neural Network
+    from sklearn.neural_network import MLPClassifier
+    Class_NN = MLPClassifier()
+    Class_NN.fit(x_train, y_train)
     
     # Classification knn
-    classification = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
-    classification.fit(x_train, y_train)
+    # classification = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
+    # classification.fit(x_train, y_train)
     
     #classification svm
     clf = SVC(kernel='linear', probability=True)
@@ -548,9 +563,11 @@ elif option == 'klassifikasi':
         #     Status_13 = 0
         
         tes = [[jk, kelas, status_orang_tua, status_yatim_piatu, Status_1, Status_2, Status_3, Status_4, Status_5, Status_6, Status_7, Status_8, Status_9, Status_10, Status_11, Status_12, Status_13]]
-        
-        hasil_knn = classification.predict(tes)
-        akurasi_knn = classification.predict_proba(tes)
+
+        hasil_NN = Class_NN.predict(tes)
+        akurasi_NN = Class_NN.predict_proba(tes)
+        # hasil_knn = classification.predict(tes)
+        # akurasi_knn = classification.predict_proba(tes)
         hasil_svm = clf.predict(tes)
         akurasi_svm = clf.predict_proba(tes)
         hasil_RandomForest = Class_RandomFores.predict(tes)
@@ -560,17 +577,27 @@ elif option == 'klassifikasi':
         for persen in range (100):
             time.sleep(0.01)
             mybar.progress(persen+1)
-        
-        st.subheader("K-Nearest Neighbor")
-        if hasil_knn [0]== 0:
-            st.write("Orang tua {} sangat mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, 
-            Nama, round(akurasi_knn[0][hasil_knn[0]]*100),3))
-        elif hasil_knn == 2:
-            st.write("Orang tua {} mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, Nama, round(akurasi_knn[0][hasil_knn[0]]*100), 3))
-        elif hasil_knn == 3 :
-            st.write("Orang tua {} tidak mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, Nama, round(akurasi_knn[0][hasil_knn[0]]*100), 3))
-        elif hasil_knn == 1 :
-            st.write("Orang tua {} sangat tidak mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, Nama, round(akurasi_knn[0][hasil_knn[0]]*100), 3))
+            
+        st.subheader("Neural Network")
+        if hasil_NN [0]== 2:
+            st.write("Orang tua {} mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, 
+            Nama, round(akurasi_NN[0][hasil_NN[0]]*100),3))
+        elif hasil_NN == 0:
+            st.write("Orang tua {} sangat mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, Nama, round(akurasi_NN[0][hasil_NN[0]]*100), 3))
+        elif hasil_NN == 3 :
+            st.write("Orang tua {} tidak mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, Nama, round(akurasi_NN[0][hasil_NN[0]]*100), 3))
+        elif hasil_NN == 1 :
+            st.write("Orang tua {} sangat tidak mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, Nama, round(akurasi_NN[0][hasil_NN[0]]*100), 3))
+        # st.subheader("K-Nearest Neighbor")
+        # if hasil_knn [0]== 0:
+        #     st.write("Orang tua {} sangat mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, 
+        #     Nama, round(akurasi_knn[0][hasil_knn[0]]*100),3))
+        # elif hasil_knn == 2:
+        #     st.write("Orang tua {} mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, Nama, round(akurasi_knn[0][hasil_knn[0]]*100), 3))
+        # elif hasil_knn == 3 :
+        #     st.write("Orang tua {} tidak mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, Nama, round(akurasi_knn[0][hasil_knn[0]]*100), 3))
+        # elif hasil_knn == 1 :
+        #     st.write("Orang tua {} sangat tidak mengetahui kemampuan {}, dengan tingkat prediksi {}%".format(Nama, Nama, round(akurasi_knn[0][hasil_knn[0]]*100), 3))
         
         st.subheader("Support Vector Machine")
         if hasil_svm [0] == 0:
