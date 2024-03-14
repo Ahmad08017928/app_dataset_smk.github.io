@@ -12,13 +12,12 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 
-st.title("Syarat Penerimaan pip Kelas 12 ")
-st.subheader("Tahun 2023")
-
 st.set_option('deprecation.showPyplotGlobalUse', False)
 option = st.sidebar.selectbox('Silahkan Pilih :', ('Home', 'Klassifikasi', 'Tes Klassifikasi'))
 
 if option == 'Home' or option == '':
+    st.title("Syarat Penerimaan pip Kelas 12 ")
+    st.subheader("Tahun 2023")
     df = pd.read_csv('dataset\data - Untitled spreadsheet - Daftar Peserta Didik.csv')
     df_c = df.copy()
     df_c[['No', 'Nama', 'Rombel Saat Ini', 'NIPD', 'JK', 'NISN',
