@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import time
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
@@ -18,8 +19,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 option = st.sidebar.selectbox('Silahkan Pilih :', ('Home', 'Klassifikasi', 'Tes Klassifikasi'))
 
 if option == 'Home' or option == '':
-    url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data%20-%20Untitled%20spreadsheet%20-%20Daftar%20Peserta%20Didik.csv")
-    df = pd.read_csv(url)
+    df = pd.read_csv('dataset\data - Untitled spreadsheet - Daftar Peserta Didik.csv')
     df_c = df.copy()
     df_c[['No', 'Nama', 'Rombel Saat Ini', 'NIPD', 'JK', 'NISN',
         'Tempat Lahir', 'Tanggal Lahir', 'NIK', 'Agama', 'Alamat', 'RT',
@@ -189,8 +189,7 @@ elif option == 'Klassifikasi':
                 Jenis Tinggal, Penerima KPS, Pekerjaan Ayah, Penghasilan Ayah, Pekerjaan Ibu, Penghasilan Ibu, 
                 alat Transportasi, Penerima KIP. Dengan metode Classification neural network, Random Forest
                 dan metode K-Nearest Neighbor""")
-    url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data%20-%20Untitled%20spreadsheet%20-%20Daftar%20Peserta%20Didik.csv")
-    df = pd.read_csv(url)
+    df = pd.read_csv('dataset\data - Untitled spreadsheet - Daftar Peserta Didik.csv')
     df_c = df.copy()
     df_c[['No', 'Nama', 'Rombel Saat Ini', 'NIPD', 'JK', 'NISN',
         'Tempat Lahir', 'Tanggal Lahir', 'NIK', 'Agama', 'Alamat', 'RT',
@@ -278,8 +277,7 @@ elif option == 'Klassifikasi':
 
 elif option == 'Tes Klassifikasi':
     st.title("menklasifikasi apakah seorang murid masuk kategori penerima pip atau tidak ?")
-    url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data%20-%20Untitled%20spreadsheet%20-%20Daftar%20Peserta%20Didik.csv")
-    df = pd.read_csv(url)
+    df = pd.read_csv('dataset\data - Untitled spreadsheet - Daftar Peserta Didik.csv')
     df_c = df.copy()
     df_c[['No', 'Nama', 'Rombel Saat Ini', 'NIPD', 'JK', 'NISN',
         'Tempat Lahir', 'Tanggal Lahir', 'NIK', 'Agama', 'Alamat', 'RT',
@@ -344,8 +342,8 @@ elif option == 'Tes Klassifikasi':
     classification = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
     classification.fit(x_train, y_train)
     # # Classification SVM
-    # Class_SVM = SVC(kernel='linear')
-    # Class_SVM.fit(x_train, y_train)
+    Class_SVM = SVC(kernel='linear', probability=True)
+    Class_SVM.fit(x_train, y_train)
 
     Nama = st.text_input("Nama")
     JT = st.radio("Jenis tempat tinggal", options=('Pesantren', 'Bersama orang tua', 'Lainnya', 'Wali', 'Asrama'))
@@ -379,6 +377,7 @@ elif option == 'Tes Klassifikasi':
         elif JT == 'Asrama':
             JT = 0
         
+        Transportasi = 0
         if Transportasi =='Sepeda':
             Transportasi = 5
         elif Transportasi == 'Angkutan umum/bus/pete-pete':
@@ -395,6 +394,8 @@ elif option == 'Tes Klassifikasi':
             Transportasi = 6
     
         kps = 0 if kps == 'TIDAK' else 1
+        
+        pekerjaan_ayah = 0
         if pekerjaan_ayah == 'Wiraswasta':
             pekerjaan_ayah = 11
         elif pekerjaan_ayah == 'Buruh':
@@ -422,6 +423,7 @@ elif option == 'Tes Klassifikasi':
         elif pekerjaan_ayah == 'Wirausaha':
             pekerjaan_ayah = 12
     
+        penghasilan_ayah = 0
         if penghasilan_ayah == 'Rp. 500,000 - Rp. 999,999':
             penghasilan_ayah = 11
         elif penghasilan_ayah == 'Rp. 1,000,000 - Rp. 1,999,999':
@@ -433,6 +435,7 @@ elif option == 'Tes Klassifikasi':
         elif penghasilan_ayah == 'Rp. 2,000,000 - Rp. 4,999,999':
             penghasilan_ayah = 1
         
+        pekerjaan_ibu = 0
         if pekerjaan_ibu == 'Lainnya':
             pekerjaan_ibu = 2
         elif pekerjaan_ibu == 'Tidak bekerja':
@@ -455,7 +458,8 @@ elif option == 'Tes Klassifikasi':
             pekerjaan_ibu = 10
         elif pekerjaan_ibu == 'PNS/TNI/Polri':
             pekerjaan_ibu = 3
-    
+        
+        penghasilan_ibu = 0
         if penghasilan_ibu == 'Rp. 500,000 - Rp. 999,999':
             penghasilan_ibu = 3
         elif penghasilan_ibu == 'Tidak Berpenghasilan':
@@ -493,11 +497,11 @@ elif option == 'Tes Klassifikasi':
         akurasi_NN = Class_NN.predict_proba(tes)
         hasil_knn = classification.predict(tes)
         akurasi_knn = classification.predict_proba(tes)
-        # hasil_svm = Class_SVM.predict(tes)
-        # akurasi_svmm = Class_SVM.predict_proba(tes)
+        hasil_svm = Class_SVM.predict(tes)
+        akurasi_svmm = Class_SVM.predict_proba(tes)
         
         for persen in range (100):
-            # time.sleep(0.01)
+            time.sleep(0.01)
             mybarrr.progress(persen+1)
         
         st.subheader("Random Forest")
@@ -518,9 +522,9 @@ elif option == 'Tes Klassifikasi':
         else :
             st.write("{} tidak termasuk dalam kategori penerima pip, dengan akurasi prediksi {}".format(Nama, round(akurasi_knn[0][hasil_knn[0]]*100), 3)) 
                 
-        # st.subheader("Support Vector Machine")
-        # if hasil_svm [0] == 1:
-        #     st.write("{} Termasuk dalam kategori penerima pip, dengan akurasi prediksi {}".format(Nama, round(akurasi_svmm[0][hasil_svm[0]]*100), 3)) 
-        # else :
-        #     st.write("{} tidak termasuk dalam kategori penerima pip, dengan akurasi prediksi {}".format(Nama, round(akurasi_svmm[0][hasil_svm[0]]*100), 3)) 
+        st.subheader("Support Vector Machine")
+        if hasil_svm [0] == 1:
+            st.write("{} Termasuk dalam kategori penerima pip, dengan akurasi prediksi {}".format(Nama, round(akurasi_svmm[0][hasil_svm[0]]*100), 3)) 
+        else :
+            st.write("{} tidak termasuk dalam kategori penerima pip, dengan akurasi prediksi {}".format(Nama, round(akurasi_svmm[0][hasil_svm[0]]*100), 3)) 
                 
