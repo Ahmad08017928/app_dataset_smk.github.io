@@ -225,6 +225,7 @@ elif option == 'Tes klassifikasi':
     x_train, x_test, y_train, y_test = train_test_split(x_d, y, test_size=0.25, random_state=500)
 
     # Classification Neural Network
+    st.header("1. Neural Network")
     from sklearn.neural_network import MLPClassifier
     Class_NN = MLPClassifier()
     Class_NN.fit(x_train, y_train)
