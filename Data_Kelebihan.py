@@ -374,162 +374,178 @@ elif option == 'klassifikasi':
     if st.button('Klassifikasi'):
         mybar = st.progress(0)
         jk = 0 if jk == 'laki laki' else 1
-        # kelas = 0
-        if kelas == 'X':
-            kelas = 0
-        elif kelas == 'XI':
-            kelas == 1
-        elif kelas == 'XII':
-            kelas = 2
+        kelas = {'X' : 0, 'XI' : 1, 'XII' : 2}[kelas]
+        status_orang_tua = {'ORANG TUA LENGKAP' : 2, 'CERAI HIDUP' : 0, 'CERAI MATI' : 1}[status_orang_tua]
+        status_yatim_piatu = {'TIDAK' : 1, 'PIATU' : 0, 'YATIM' : 2, 'YATIM PIATU' :3}[status_yatim_piatu]
+        Status_1 = {'Sesuai' : 2, 'Sangat Tidak Sesuai' : 1, 'Tidak Sesuai' :3, 'Sangat Sesuai' :0}[Status_1]
+        Status_2 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai' : 0}[Status_2]
+        Status_3 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai' : 0}[Status_3]
+        Status_4 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Sesuai' : 1, 'Sangat Tidak Sesuai' : 0}[Status_4]
+        Status_5 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai' : 0}[Status_5]
+        Status_6 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai' : 0}[Status_6]
+        Status_7 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai' : 0}[Status_7]
+        Status_8 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai' : 0}[Status_8]
+        Status_9 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai' : 0}[Status_9]
+        Status_10 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai': 0}[Status_10]
+        Status_11 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai': 0}[Status_11]
+        Status_12 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai': 0}[Status_12]
+        Status_13 = {'Sesuai' : 2, 'Tidak Sesuai' : 3, 'Sangat Tidak Sesuai' : 1, 'Sangat Sesuai': 0}[Status_13]
+        # # kelas = 0
+        # if kelas == 'X':
+        #     kelas = 0
+        # elif kelas == 'XI':
+        #     kelas == 1
+        # elif kelas == 'XII':
+        #     kelas = 2
         
-        # status_orang_tua == 0
-        if status_orang_tua == 'ORANG TUA LENGKAP':
-            status_orang_tua = 2
-        elif status_orang_tua == 'CERAI HIDUP':
-            status_orang_tua = 0
-        elif status_orang_tua == 'CERAI MATI':
-            status_orang_tua == 1
+        # # status_orang_tua == 0
+        # if status_orang_tua == 'ORANG TUA LENGKAP':
+        #     status_orang_tua = 2
+        # elif status_orang_tua == 'CERAI HIDUP':
+        #     status_orang_tua = 0
+        # elif status_orang_tua == 'CERAI MATI':
+        #     status_orang_tua == 1
         
-        # status_yatim_piatu == 0
-        if status_yatim_piatu == 'TIDAK':
-            status_yatim_piatu = 1
-        elif status_yatim_piatu == 'YATIM':
-            status_yatim_piatu = 2
-        elif status_yatim_piatu == 'YATIM PIATU':
-            status_yatim_piatu = 3
-        elif status_yatim_piatu == 'PIATU':
-            status_yatim_piatu = 0
+        # # status_yatim_piatu == 0
+        # if status_yatim_piatu == 'TIDAK':
+        #     status_yatim_piatu = 1
+        # elif status_yatim_piatu == 'YATIM':
+        #     status_yatim_piatu = 2
+        # elif status_yatim_piatu == 'YATIM PIATU':
+        #     status_yatim_piatu = 3
+        # elif status_yatim_piatu == 'PIATU':
+        #     status_yatim_piatu = 0
         
         
-        # if status_asuh == 'ORANG TUA KANDUNG':
-        #     status_asuh = 3
-        # elif status_asuh == 'KAKEK-NENEK':
-        #     status_asuh = 1
-        # elif status_asuh == 'SAUDARA KANDUNG':
-        #     status_asuh = 5
-        # elif status_asuh == 'PAK DHE-BU DHE':
-        #     status_asuh = 4
-        # elif status_asuh == 'LAINNYA':
-        #     status_asuh = 2
-        # elif status_asuh == 'KEDUA ORANG TUA SAYA MASIH HIDUP':
-        #     status_asuh == 0
+        # # if status_asuh == 'ORANG TUA KANDUNG':
+        # #     status_asuh = 3
+        # # elif status_asuh == 'KAKEK-NENEK':
+        # #     status_asuh = 1
+        # # elif status_asuh == 'SAUDARA KANDUNG':
+        # #     status_asuh = 5
+        # # elif status_asuh == 'PAK DHE-BU DHE':
+        # #     status_asuh = 4
+        # # elif status_asuh == 'LAINNYA':
+        # #     status_asuh = 2
+        # # elif status_asuh == 'KEDUA ORANG TUA SAYA MASIH HIDUP':
+        # #     status_asuh == 0
             
-        if Status_1 == 'Sesuai':
-            Status_1 = 2
-        elif Status_1 == 'Sangat Tidak Sesuai':
-            Status_1 = 1
-        elif Status_1 == 'Tidak Sesuai':
-            Status_1 = 3
-        elif Status_1 == "Sangat Sesuai":
-            Status_1 = 0
+        # if Status_1 == 'Sesuai':
+        #     Status_1 = 2
+        # elif Status_1 == 'Sangat Tidak Sesuai':
+        #     Status_1 = 1
+        # elif Status_1 == 'Tidak Sesuai':
+        #     Status_1 = 3
+        # elif Status_1 == "Sangat Sesuai":
+        #     Status_1 = 0
         
-        if Status_2 == 'Sesuai':
-            Status_2 = 2
-        elif Status_2 == 'Tidak Sesuai':
-            Status_2 = 3
-        elif Status_2 == 'Sangat Tidak Sesuai':
-            Status_2 = 1
-        elif Status_2 == 'Sangat Sesuai':
-            Status_2 = 0
+        # if Status_2 == 'Sesuai':
+        #     Status_2 = 2
+        # elif Status_2 == 'Tidak Sesuai':
+        #     Status_2 = 3
+        # elif Status_2 == 'Sangat Tidak Sesuai':
+        #     Status_2 = 1
+        # elif Status_2 == 'Sangat Sesuai':
+        #     Status_2 = 0
         
-        if Status_3 == 'Sesuai':
-            Status_3 = 2
-        elif Status_3 == 'Tidak Sesuai':
-            Status_3 = 3
-        elif Status_3 == 'Sangat Tidak Sesuai':
-            Status_3 == 1
-        elif Status_3 == 'Sangat Sesuai':
-            Status_3 = 0
+        # if Status_3 == 'Sesuai':
+        #     Status_3 = 2
+        # elif Status_3 == 'Tidak Sesuai':
+        #     Status_3 = 3
+        # elif Status_3 == 'Sangat Tidak Sesuai':
+        #     Status_3 == 1
+        # elif Status_3 == 'Sangat Sesuai':
+        #     Status_3 = 0
         
-        if Status_4 == 'Sesuai':
-            Status_4 = 2
-        elif Status_4 == 'Tidak Sesuai':
-            Status_4 = 3
-        elif Status_4 == 'Sangat Sesuai':
-            Status_4 = 1
-        elif Status_4 == 'Sangat Tidak Sesuai':
-            Status_4 = 0
+        # if Status_4 == 'Sesuai':
+        #     Status_4 = 2
+        # elif Status_4 == 'Tidak Sesuai':
+        #     Status_4 = 3
+        # elif Status_4 == 'Sangat Sesuai':
+        #     Status_4 = 1
+        # elif Status_4 == 'Sangat Tidak Sesuai':
+        #     Status_4 = 0
         
-        if Status_5 == 'Sesuai':
-            Status_5 = 2
-        elif Status_5 == 'Tidak Sesuai':
-            Status_5 = 3
-        elif Status_5 == 'Sangat Tidak Sesuai':
-            Status_5 = 1
-        elif Status_5 == 'Sangat Sesuai':
-            Status_5 = 0
+        # if Status_5 == 'Sesuai':
+        #     Status_5 = 2
+        # elif Status_5 == 'Tidak Sesuai':
+        #     Status_5 = 3
+        # elif Status_5 == 'Sangat Tidak Sesuai':
+        #     Status_5 = 1
+        # elif Status_5 == 'Sangat Sesuai':
+        #     Status_5 = 0
         
-        if Status_6 == 'Sesuai':
-            Status_6 = 2
-        elif Status_6 == 'Tidak Sesuai':
-            Status_6 = 3
-        elif Status_6 == 'Sangat Tidak Sesuai':
-            Status_6 = 1
-        elif Status_6 == 'Sangat Sesuai':
-            Status_6 = 0
+        # if Status_6 == 'Sesuai':
+        #     Status_6 = 2
+        # elif Status_6 == 'Tidak Sesuai':
+        #     Status_6 = 3
+        # elif Status_6 == 'Sangat Tidak Sesuai':
+        #     Status_6 = 1
+        # elif Status_6 == 'Sangat Sesuai':
+        #     Status_6 = 0
         
-        if Status_7 == 'Sesuai':
-            Status_7 = 2
-        elif Status_7 == 'Tidak Sesuai':
-            Status_7 = 3
-        elif Status_7 == 'Sangat Tidak Sesuai':
-            Status_7 = 1
-        elif Status_7 == 'Sangat Sesuai':
-            Status_7 = 0
+        # if Status_7 == 'Sesuai':
+        #     Status_7 = 2
+        # elif Status_7 == 'Tidak Sesuai':
+        #     Status_7 = 3
+        # elif Status_7 == 'Sangat Tidak Sesuai':
+        #     Status_7 = 1
+        # elif Status_7 == 'Sangat Sesuai':
+        #     Status_7 = 0
             
-        if Status_8 == 'Sesuai':
-            Status_8 = 2
-        elif Status_8 == 'Tidak Sesuai':
-            Status_8 = 3
-        elif Status_8 == 'Sangat Tidak Sesuai':
-            Status_8 = 1
-        elif Status_8 == 'Sangat Sesuai':
-            Status_8 = 0
+        # if Status_8 == 'Sesuai':
+        #     Status_8 = 2
+        # elif Status_8 == 'Tidak Sesuai':
+        #     Status_8 = 3
+        # elif Status_8 == 'Sangat Tidak Sesuai':
+        #     Status_8 = 1
+        # elif Status_8 == 'Sangat Sesuai':
+        #     Status_8 = 0
         
-        if Status_9 == 'Sesuai':
-            Status_9 = 2
-        elif Status_9 == 'Tidak Sesuai':
-            Status_9 = 3
-        elif Status_9 == 'Sangat Tidak Sesuai':
-            Status_9 = 1
-        elif Status_9 == 'Sangat Sesuai':
-            Status_9 = 0
+        # if Status_9 == 'Sesuai':
+        #     Status_9 = 2
+        # elif Status_9 == 'Tidak Sesuai':
+        #     Status_9 = 3
+        # elif Status_9 == 'Sangat Tidak Sesuai':
+        #     Status_9 = 1
+        # elif Status_9 == 'Sangat Sesuai':
+        #     Status_9 = 0
         
-        if Status_10 == 'Sesuai':
-            Status_10 = 2
-        elif Status_10 == 'Tidak Sesuai':
-            Status_10 = 3
-        elif Status_10 == 'Sangat Tidak Sesuai':
-            Status_10 = 1
-        elif Status_10 == 'Sangat Sesuai':
-            Status_10 = 0
+        # if Status_10 == 'Sesuai':
+        #     Status_10 = 2
+        # elif Status_10 == 'Tidak Sesuai':
+        #     Status_10 = 3
+        # elif Status_10 == 'Sangat Tidak Sesuai':
+        #     Status_10 = 1
+        # elif Status_10 == 'Sangat Sesuai':
+        #     Status_10 = 0
             
-        if Status_11 == 'Sesuai':
-            Status_11 = 2
-        elif Status_11 == 'Tidak Sesuai':
-            Status_11 = 3
-        elif Status_11 == 'Sangat Tidak Sesuai':
-            Status_11 = 1
-        elif Status_11 == 'Sangat Sesuai':
-            Status_11 = 0
+        # if Status_11 == 'Sesuai':
+        #     Status_11 = 2
+        # elif Status_11 == 'Tidak Sesuai':
+        #     Status_11 = 3
+        # elif Status_11 == 'Sangat Tidak Sesuai':
+        #     Status_11 = 1
+        # elif Status_11 == 'Sangat Sesuai':
+        #     Status_11 = 0
             
-        if Status_12 == 'Sesuai':
-            Status_12 = 2
-        elif Status_12 == 'Tidak Sesuai':
-            Status_12 = 3
-        elif Status_12 == 'Sangat Tidak Sesuai':
-            Status_12 = 1
-        elif Status_12 == 'Sangat Sesuai':
-            Status_12 = 0
+        # if Status_12 == 'Sesuai':
+        #     Status_12 = 2
+        # elif Status_12 == 'Tidak Sesuai':
+        #     Status_12 = 3
+        # elif Status_12 == 'Sangat Tidak Sesuai':
+        #     Status_12 = 1
+        # elif Status_12 == 'Sangat Sesuai':
+        #     Status_12 = 0
             
-        if Status_13 == 'Sesuai':
-            Status_13 = 2
-        elif Status_13 == 'Tidak Sesuai':
-            Status_13 = 3
-        elif Status_13 == 'Sangat Tidak Sesuai':
-            Status_13 = 1
-        elif Status_13 == 'Sangat Sesuai':
-            Status_13 = 0
+        # if Status_13 == 'Sesuai':
+        #     Status_13 = 2
+        # elif Status_13 == 'Tidak Sesuai':
+        #     Status_13 = 3
+        # elif Status_13 == 'Sangat Tidak Sesuai':
+        #     Status_13 = 1
+        # elif Status_13 == 'Sangat Sesuai':
+        #     Status_13 = 0
         
         tes = [[jk, kelas, status_orang_tua, status_yatim_piatu, Status_1, Status_2, Status_3, Status_4, Status_5, Status_6, Status_7, Status_8, Status_9, Status_10, Status_11, Status_12, Status_13]]
         
@@ -539,9 +555,10 @@ elif option == 'klassifikasi':
         akurasi_svm = clf.predict_proba(tes)
         hasil_RandomForest = Class_RandomFores.predict(tes)
         akurasi_RandomForest = Class_RandomFores.predict_proba(tes)
-        
+
+        import time
         for persen in range (100):
-            # time.sleep(0.01)
+            time.sleep(0.01)
             mybar.progress(persen+1)
         
         st.subheader("K-Nearest Neighbor")
