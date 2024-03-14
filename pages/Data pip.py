@@ -18,7 +18,8 @@ option = st.sidebar.selectbox('Silahkan Pilih :', ('Home', 'Klassifikasi', 'Tes 
 if option == 'Home' or option == '':
     st.title("Syarat Penerimaan pip Kelas 12 ")
     st.subheader("Tahun 2023")
-    df = pd.read_csv('dataset\data - Untitled spreadsheet - Daftar Peserta Didik.csv')
+    url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data%20-%20Untitled%20spreadsheet%20-%20Daftar%20Peserta%20Didik.csv")
+    df = pd.read_csv(url)
     df_c = df.copy()
     df_c[['No', 'Nama', 'Rombel Saat Ini', 'NIPD', 'JK', 'NISN',
         'Tempat Lahir', 'Tanggal Lahir', 'NIK', 'Agama', 'Alamat', 'RT',
@@ -188,7 +189,8 @@ elif option == 'Klassifikasi':
                 Jenis Tinggal, Penerima KPS, Pekerjaan Ayah, Penghasilan Ayah, Pekerjaan Ibu, Penghasilan Ibu, 
                 alat Transportasi, Penerima KIP. Dengan metode Classification neural network, Random Forest
                 dan metode K-Nearest Neighbor""")
-    df = pd.read_csv('dataset\data - Untitled spreadsheet - Daftar Peserta Didik.csv')
+    url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data%20-%20Untitled%20spreadsheet%20-%20Daftar%20Peserta%20Didik.csv")
+    df = pd.read_csv(url)
     df_c = df.copy()
     df_c[['No', 'Nama', 'Rombel Saat Ini', 'NIPD', 'JK', 'NISN',
         'Tempat Lahir', 'Tanggal Lahir', 'NIK', 'Agama', 'Alamat', 'RT',
@@ -276,7 +278,8 @@ elif option == 'Klassifikasi':
 
 elif option == 'Tes Klassifikasi':
     st.title("menklasifikasi apakah seorang murid masuk kategori penerima pip atau tidak ?")
-    df = pd.read_csv('dataset\data - Untitled spreadsheet - Daftar Peserta Didik.csv')
+    url = ("https://raw.githubusercontent.com/Ahmad08017928/app_dataset_smk.github.io/main/dataset/data%20-%20Untitled%20spreadsheet%20-%20Daftar%20Peserta%20Didik.csv")
+    df = pd.read_csv(url)
     df_c = df.copy()
     df_c[['No', 'Nama', 'Rombel Saat Ini', 'NIPD', 'JK', 'NISN',
         'Tempat Lahir', 'Tanggal Lahir', 'NIK', 'Agama', 'Alamat', 'RT',
